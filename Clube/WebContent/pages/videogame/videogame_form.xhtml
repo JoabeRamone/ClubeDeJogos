@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html"></f:view>
+
+<h:head>
+	<title> Videogames </title>
+</h:head>
+
+
+<h:body>
+	<h:form>
+
+		<p:growl id="messages" />
+		<h3>Videogames</h3>
+		<!-- Form de Cadastro -->
+		<h:panelGrid id="grid" columns="2" cellpadding="5">
+			<h3>Id</h3>
+			<p:inputText value="#{videogameMB.videogame.id}" readonly="true" />
+
+			<h3>Nome</h3>
+			<span class="ui-float-label"> <p:inputText id="float-input"
+					value="#{videogameMB.videogame.nome}" />
+			</span>
+		</h:panelGrid>
+		
+		<h:panelGrid  columns="2" cellpadding="5">
+			<p:commandButton value="Salvar" icon="fa fa-save" update="@form"
+				action="#{videogameMB.salvar}"  />
+
+			<p:commandButton value="Cancelar" action="list" ajax="false"
+				immediate="true" />
+		</h:panelGrid>
+
+	</h:form>
+
+</h:body>
+
+
+</html>

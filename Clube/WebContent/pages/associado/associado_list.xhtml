@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html"></f:view>
+
+<h:head>
+	<title>Associados</title>
+</h:head>
+
+
+<h:body>
+	<h:form id="listForm">
+		<p:growl id="messages" />
+
+		<!-- Form de Cadastro -->
+		<h3>Busca de Associados</h3>
+		<h:panelGrid id="gridSearch" columns="3" cellpadding="5">
+			<p:inputText placeholder="Nome associado"
+				value="#{associadoListMB.nomeAssociado}" />
+			<p:commandButton value="Buscar" icon="fa fa-search"
+				action="#{associadoListMB.buscar}" style="margin-right:10px;"
+				update=":listForm:grid :listForm:messages" ajax="true" />
+			<p:commandButton value="Novo" icon="fa fa-plus"
+				action="#{associadoListMB.novo}" style="margin-right:20px;"
+				ajax="false" />
+		</h:panelGrid>
+
+		<h:panelGrid id="grid" columns="2" cellpadding="5">
+			<p:fieldset style="margin-bottom:20px">
+
+				<p:dataTable var="c" value="#{associadoListMB.associados}">
+					<p:column headerText="Id" >
+						<h:outputText value="#{c.id}" width="5%"/>
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{c.nome}" />
+					</p:column>
+					<p:column headerText="Telefone">
+						<h:outputText value="#{c.telefone}" />
+					</p:column>
+					<p:column headerText="Endereço" width="50%">
+						<h:outputText value="#{c.endereco}" />
+					</p:column>
+					<p:column headerText="ações" width="25%">
+						<p:commandButton value="editar"
+							action="#{associadoListMB.editar(c)}" icon="fa fa-edit" />
+						<p:commandButton value="excluir"
+							action="#{associadoListMB.excluir(c)}" icon="fa fa-remove"
+							update=":listForm:grid :listForm:messages" />
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+		</h:panelGrid>
+
+
+
+	</h:form>
+
+</h:body>
+
+
+</html>

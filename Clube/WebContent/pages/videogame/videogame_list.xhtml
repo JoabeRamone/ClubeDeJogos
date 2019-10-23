@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html"></f:view>
+
+<h:head>
+	<title> Videogames </title>
+</h:head>
+
+
+<h:body>
+	<h:form id="videogameForm">
+		<p:growl id="messages" />
+
+		<!-- Form de Cadastro -->
+		<h3>Videogames</h3>
+		<h:panelGrid id="grid" columns="2" cellpadding="5">
+
+
+			<p:dataTable var="c" value="#{videogameListMB.videogames}">
+				<p:column headerText="Id" width="25%">
+					<h:outputText value="#{c.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{c.nome}" />
+				</p:column>
+				<p:column headerText="ações" width="25%">
+					<p:commandButton value="editar" action="#{videogameListMB.editar(c)}" icon="fa fa-edit" />
+					<p:commandButton value="excluir" action="#{videogameListMB.excluir(c)}" icon="fa fa-remove" update=":videogameForm:grid :videogameForm:messages" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGrid>
+
+		<p:commandButton value="Novo" icon="fa fa-plus" 
+			action="#{videogameListMB.novo}" style="margin-right:20px;"
+			ajax="false" />
+
+	</h:form>
+
+</h:body>
+
+
+</html>

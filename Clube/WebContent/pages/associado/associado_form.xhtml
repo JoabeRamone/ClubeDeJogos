@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html"></f:view>
+
+<h:head>
+	<title>Associado</title>
+</h:head>
+
+
+<h:body>
+	<h:form id="formAssociado">
+		<p:growl id="messages" />
+		<p:tabView>
+			<p:tab title="Associado">
+
+
+
+				<!-- Form de Cadastro -->
+				<h:panelGrid id="grid" columns="2" cellpadding="5">
+					<h3>Id</h3>
+					<p:inputText value="#{associadoMB.associado.id}" readonly="true" />
+
+					<h3>Nome*</h3>
+					<span class="ui-float-label"> <p:inputText
+							value="#{associadoMB.associado.nome}"  />
+					</span>
+
+					<h3>Telefone*</h3>
+					<span class="ui-float-label"> <p:inputText
+							value="#{associadoMB.associado.telefone}" />
+					</span>
+
+					<h3>Endereço*</h3>
+					<span class="ui-float-label"> <p:inputText
+							value="#{associadoMB.associado.endereco}" />
+					</span>
+				</h:panelGrid>
+
+
+
+
+			</p:tab>
+
+			<p:tab title="Games" disabled="#{!(associadoMB.associado.id > 0)}">
+
+				<h3>VideoGame</h3>
+				<span class="ui-float-label"> <h:panelGrid
+						id="gridVideogames" columns="4" cellpadding="5">
+						<p:selectOneMenu id="console" style="width:125px"
+							value="#{associadoMB.selectedVideogame.id}"
+							valueChangeListener="#{associadoMB.videogameSelecionado}"
+							onchange="submit()">
+							<f:selectItem itemLabel="Selecione ..." itemValue="" />
+							<f:selectItems value="#{associadoMB.videogames}" var="c"
+								itemLabel="#{c.nome}" itemValue="#{c.id}" />
+						</p:selectOneMenu>
+						<p:commandButton value="Adicionar" icon="fa fa-plus" rendered="#{associadoMB.enableVideogameAdd}"
+							update="@form" action="#{associadoMB.adicionarVideogame}" />
+						<p:commandButton value="Excluir" icon="fa fa-minus" update="@form" rendered="#{associadoMB.enableVideogameDel}"
+							action="#{associadoMB.removerVideogame}" />
+					</h:panelGrid>
+				</span>
+
+				<p:panel rendered="#{associadoMB.enableVideogameDel}">
+					<h3>Jogos</h3>
+					<span class="ui-float-label"> <h:panelGrid id="gridJogo"
+							columns="3" cellpadding="5">
+							<span class="ui-float-label"> 
+									<p:inputText
+									value="#{associadoMB.novoJogo}"
+									placeholder="Título do jogo" /> 
+									<p:commandButton
+									value="Adicionar" icon="fa fa-plus" update="@form"
+									action="#{associadoMB.adicionarJogo}"  />
+							</span>
+						</h:panelGrid> 
+						
+						<p:dataTable var="c" value="#{associadoMB.currentAssociadoVideogame.jogos}">
+							<p:column headerText="Título do Jogo">
+								<h:outputText value="#{c.nomeJogo}" />
+							</p:column>
+							<p:column headerText="ações" width="25%">
+								<p:commandButton value="excluir"
+									action="#{associadoMB.excluirJogo(c)}" icon="fa fa-remove"
+									update="@form" />
+							</p:column>
+						</p:dataTable>
+
+					</span>
+				</p:panel>
+			</p:tab>
+		</p:tabView>
+
+
+
+
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:commandButton value="Salvar" icon="fa fa-save" update="@form"
+				action="#{associadoMB.salvar}" />
+
+			<p:commandButton value="Cancelar" action="list" ajax="false"
+				immediate="true" />
+		</h:panelGrid>
+
+	</h:form>
+</h:body>
+
+
+</html>

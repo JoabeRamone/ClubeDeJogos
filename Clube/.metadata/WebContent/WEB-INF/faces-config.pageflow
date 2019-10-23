@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15710861405280" configfile="/Clube/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/videogame/videogame_list.xhtml" x="336" y="180" id="pf15711331126770" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf15711331740041" inlinks="pf15711331740042" path="/pages/videogame/videogame_list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/videogame/videogame_form.xhtml" x="816" y="192" id="pf15711331740043" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15711331740042" inlinks="pf15711331740041" path="/pages/videogame/videogame_form.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/home.xhtml" x="156" y="48" id="pf15711344696745" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf15711346600726" path="/pages/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="96" y="276" id="pf15711346600727" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15711346600726" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/associado/associado_list.xhtml" x="372" y="420" id="pf15717451126990" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf15717451126991" inlinks="pf15717451126992" path="/pages/associado/associado_list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/associado/associado_form.xhtml" x="792" y="408" id="pf15717451126993" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15717451126992" inlinks="pf15717451126991" path="/pages/associado/associado_form.xhtml"/>
+  <links id="pf15711331740041" target="pf15711331740043" source="pf15711331126770" outcome="form"/>
+  <links id="pf15711331740042" target="pf15711331126770" source="pf15711331740043" outcome="list"/>
+  <links id="pf15711346600726" target="pf15711344696745" source="pf15711346600727" outcome="home"/>
+  <links id="pf15717451126991" target="pf15717451126993" source="pf15717451126990" outcome="form"/>
+  <links id="pf15717451126992" target="pf15717451126990" source="pf15717451126993" outcome="list"/>
+</pageflow:Pageflow>
