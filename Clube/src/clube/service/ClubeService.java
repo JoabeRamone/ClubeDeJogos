@@ -3,8 +3,10 @@ package clube.service;
 import java.util.List;
 
 import clube.bo.AssociadoBO;
+import clube.bo.AssociadoVideogameJogoBO;
 import clube.bo.VideogameBO;
 import clube.model.Associado;
+import clube.model.AssociadoVideogameJogo;
 import clube.model.Videogame;
 
 public class ClubeService implements IClubeService {
@@ -66,7 +68,8 @@ public class ClubeService implements IClubeService {
 		AssociadoBO bo = new AssociadoBO();
 		return bo.listarPorNome(nomeAssociado);
 	}
-
+	
+	
 	@Override
 	public void salvarVideogame(Videogame videogame) {
 		VideogameBO bo = new VideogameBO();
@@ -89,6 +92,18 @@ public class ClubeService implements IClubeService {
 	public Videogame encontrarPorId(Long id) {
 		VideogameBO bo = new VideogameBO();
 		return bo.encontrarPorId(id);
+	}
+
+	@Override
+	public List<Associado> listarAssociados() {
+		AssociadoBO bo = new AssociadoBO();
+		return bo.listar();
+	}
+
+	@Override
+	public List<AssociadoVideogameJogo> listarAssociadoVideogameJogo() {
+		AssociadoVideogameJogoBO bo = new AssociadoVideogameJogoBO();
+		return bo.listar();
 	}
 
 }

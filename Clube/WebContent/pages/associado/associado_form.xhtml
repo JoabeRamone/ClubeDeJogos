@@ -12,8 +12,14 @@
 	<title>Associado</title>
 </h:head>
 
-
-<h:body>
+<style>
+.back {
+	background-image:
+		url("https://rfclipart.com/image2/big/7f-db-09/joystick-seamless-pattern-on-green-background-Download-Royalty-free-Vector-File-EPS-425236.jpg");
+	background-repeat: repeat;
+}
+</style>
+<h:body style="background-color:  black!important;">
 	<h:form id="formAssociado">
 		<p:growl id="messages" />
 		<p:tabView>
@@ -28,7 +34,7 @@
 
 					<h3>Nome*</h3>
 					<span class="ui-float-label"> <p:inputText
-							value="#{associadoMB.associado.nome}"  />
+							value="#{associadoMB.associado.nome}" />
 					</span>
 
 					<h3>Telefone*</h3>
@@ -47,7 +53,7 @@
 
 			</p:tab>
 
-			<p:tab title="Games" disabled="#{!(associadoMB.associado.id > 0)}">
+			<p:tab title="Jogos" disabled="#{!(associadoMB.associado.id > 0)}">
 
 				<h3>VideoGame</h3>
 				<span class="ui-float-label"> <h:panelGrid
@@ -60,9 +66,15 @@
 							<f:selectItems value="#{associadoMB.videogames}" var="c"
 								itemLabel="#{c.nome}" itemValue="#{c.id}" />
 						</p:selectOneMenu>
-						<p:commandButton value="Adicionar" icon="fa fa-plus" rendered="#{associadoMB.enableVideogameAdd}"
-							update="@form" action="#{associadoMB.adicionarVideogame}" />
-						<p:commandButton value="Excluir" icon="fa fa-minus" update="@form" rendered="#{associadoMB.enableVideogameDel}"
+
+
+						<p:commandButton value="Adicionar" icon="fa fa-plus"
+							rendered="#{associadoMB.enableVideogameAdd}" update="@form"
+							action="#{associadoMB.adicionarVideogame}" />
+
+
+						<p:commandButton value="Excluir" icon="fa fa-minus" update="@form"
+							rendered="#{associadoMB.enableVideogameDel}"
 							action="#{associadoMB.removerVideogame}" />
 					</h:panelGrid>
 				</span>
@@ -71,17 +83,13 @@
 					<h3>Jogos</h3>
 					<span class="ui-float-label"> <h:panelGrid id="gridJogo"
 							columns="3" cellpadding="5">
-							<span class="ui-float-label"> 
-									<p:inputText
-									value="#{associadoMB.novoJogo}"
-									placeholder="Título do jogo" /> 
-									<p:commandButton
-									value="Adicionar" icon="fa fa-plus" update="@form"
-									action="#{associadoMB.adicionarJogo}"  />
+							<span class="ui-float-label"> <p:inputText
+									value="#{associadoMB.novoJogo}" placeholder="Título do jogo" />
+								<p:commandButton value="Adicionar" icon="fa fa-plus"
+									update="@form" action="#{associadoMB.adicionarJogo}" />
 							</span>
-						</h:panelGrid> 
-						
-						<p:dataTable var="c" value="#{associadoMB.currentAssociadoVideogame.jogos}">
+						</h:panelGrid> <p:dataTable var="c"
+							value="#{associadoMB.currentAssociadoVideogame.jogos}">
 							<p:column headerText="Título do Jogo">
 								<h:outputText value="#{c.nomeJogo}" />
 							</p:column>
@@ -95,8 +103,76 @@
 					</span>
 				</p:panel>
 			</p:tab>
-		</p:tabView>
 
+			<p:tab title="Empréstimo">
+
+				<h1>Jogos Disponiveis para alugar</h1>
+
+
+
+
+				<p:dataTable var="c" value="#{associadoMB.associadosJogos}">
+
+
+					<p:column headerText="Jogo">
+						<h:outputText value="#{c.nomeJogo}" />
+					</p:column>
+
+					<p:column headerText="Video Game">
+						<h:outputText value="#{c.associadoVideogame.videogame.nome}" />
+					</p:column>
+
+
+					<p:column headerText="Associado">
+						<h:outputText value="#{c.associadoVideogame.associado.nome}" />
+					</p:column>
+
+					<p:column headerText="Ações" width="25%">
+						<p:commandButton value="emprestar"
+							action="#{associadoMB.emprestarJogo(c.nomeJogo)}" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br></br>
+
+				<p:panel rendered="#{associadoMB.enableEmprestar}" columns="3">
+					<p:commandButton icon="fa fa-remove"
+						action="#{associadoMB.fecharFormularioDeEmprestimo}"
+						update="@form" style="float:right;"></p:commandButton>
+					<h3>Cadastrar emprestimo</h3>
+
+					<h4>locador</h4>
+
+					<p:selectOneMenu id="associado" style="width:125px"
+						value="#{associadoMB.associados}"
+						valueChangeListener="#{associadoMB.associadoSelecionado}">
+
+
+						<f:selectItem itemLabel="Selecione ..." itemValue="" />
+
+
+						<f:selectItems value="#{associadoMB.associados}" var="c"
+							itemLabel="#{c.nome}" itemValue="#{c.id}" />
+
+					</p:selectOneMenu>
+					<div>
+						<h3>Jogo</h3>
+						<span class="ui-float-label"> <p:inputText
+								value="#{associadoMB.jogoParaEmprestar}" />
+						</span>
+					</div>
+
+
+
+					<h4>Data</h4>
+
+					<h:panelGrid>
+						<p:inputMask id="date" value="#{maskView.date}" mask="99/99/9999" />
+					</h:panelGrid>
+
+				</p:panel>
+			</p:tab>
+
+		</p:tabView>
 
 
 

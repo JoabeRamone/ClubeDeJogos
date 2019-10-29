@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import clube.model.Associado;
+import clube.model.AssociadoVideogameJogo;
 import clube.model.Videogame;
 
 public interface IClubeService extends Serializable {
@@ -29,6 +30,10 @@ public interface IClubeService extends Serializable {
 	public Associado encontrarAssociadoPorId_fullList(Long id);
 	
 	public Videogame encontrarPorId(Long id);
+
+	public List<Associado> listarAssociados();
+	
+	public List<AssociadoVideogameJogo> listarAssociadoVideogameJogo();
 	
 
 }

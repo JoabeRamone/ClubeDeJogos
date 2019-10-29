@@ -11,19 +11,49 @@
 <h:head>
 	<title> Clube de Jogos </title>
 </h:head>
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: blueviolet;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 70px;
+  margin: 4px 2px;
+  cursor: pointer;
+  height: 350px;
+}
 
+.button2 {background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/09/National-Video-Game-Day-796x416.jpg");}
+.button3 {background-image: url("http://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/public/field/field_image_main/Computer%20game%20banner_0.jpg?itok=2yC_03zP");}
+
+body {
+background-image: url("https://rfclipart.com/image2/big/7f-db-09/joystick-seamless-pattern-on-green-background-Download-Royalty-free-Vector-File-EPS-425236.jpg");
+background-repeat: repeat;
+}
+
+</style>
 
 <h:body>
+
+
+	<h1 style="font-size:7vw;color: white">Clube de Jogos</h1>
 	<h:form>
 		<p:growl id="messages" />
-		<p:commandButton value="Videogame" id="videogame"
+		<p:commandButton value="Videogame" id="videogame" class="button button2" 
 			action="videogame/videogame_list" style="margin-right:20px;"
 			ajax="false" />
 
-		<p:commandButton value="Associado" id="associado"
+		<p:commandButton value="Associado" id="associado" class="button button3"
 			action="associado/associado_list" style="margin-right:20px;"
 			ajax="false" />
+			
+
+			
 	</h:form>
+	
 
 </h:body>
 

@@ -11,31 +11,43 @@
 <h:head>
 	<title>Associados</title>
 </h:head>
-
+<style>
+body {
+background-image: url("https://rfclipart.com/image2/big/7f-db-09/joystick-seamless-pattern-on-green-background-Download-Royalty-free-Vector-File-EPS-425236.jpg");
+background-repeat: repeat;
+}
+</style>
 
 <h:body>
 	<h:form id="listForm">
 		<p:growl id="messages" />
 
 		<!-- Form de Cadastro -->
-		<h3>Busca de Associados</h3>
+		<h3 style="color:white;font-size: 50px">Busca de Associados</h3>
 		<h:panelGrid id="gridSearch" columns="3" cellpadding="5">
+		
 			<p:inputText placeholder="Nome associado"
 				value="#{associadoListMB.nomeAssociado}" />
+				
+				
 			<p:commandButton value="Buscar" icon="fa fa-search"
 				action="#{associadoListMB.buscar}" style="margin-right:10px;"
 				update=":listForm:grid :listForm:messages" ajax="true" />
+				
+				
 			<p:commandButton value="Novo" icon="fa fa-plus"
 				action="#{associadoListMB.novo}" style="margin-right:20px;"
 				ajax="false" />
+				
+				
 		</h:panelGrid>
 
 		<h:panelGrid id="grid" columns="2" cellpadding="5">
 			<p:fieldset style="margin-bottom:20px">
 
 				<p:dataTable var="c" value="#{associadoListMB.associados}">
-					<p:column headerText="Id" >
-						<h:outputText value="#{c.id}" width="5%"/>
+					<p:column headerText="Id">
+						<h:outputText value="#{c.id}" width="5%" />
 					</p:column>
 					<p:column headerText="Nome">
 						<h:outputText value="#{c.nome}" />
@@ -57,7 +69,8 @@
 			</p:fieldset>
 		</h:panelGrid>
 
-
+		<p:commandButton value="Voltar" action="/pages/home.xhtml"
+			style="margin-right:20px;" ajax="false" />
 
 	</h:form>
 

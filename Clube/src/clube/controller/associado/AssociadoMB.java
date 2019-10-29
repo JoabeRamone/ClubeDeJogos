@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import clube.bo.AssociadoBO;
 import clube.model.Associado;
 import clube.model.AssociadoVideogame;
 import clube.model.AssociadoVideogameJogo;
@@ -27,20 +28,27 @@ public class AssociadoMB implements Serializable {
 
 	private Associado associado;
 	
+	private List<Associado> associados;
 	private List<Videogame> videogames;
+	private List<AssociadoVideogameJogo> associadosJogos;
+	
 	
 	private Videogame selectedVideogame = new Videogame();
 	private AssociadoVideogame currentAssociadoVideogame;
 	private String novoJogo;
+	private String jogoParaEmprestar;
 	
 	
 	private boolean enableVideogameAdd;
 	private boolean enableVideogameDel;
+	private boolean enableEmprestar;
 	
 
 	@PostConstruct
 	public void init() {
 		videogames = service.listarVideogames();
+		associados = service.listarAssociados();
+		associadosJogos = service.listarAssociadoVideogameJogo();
 		
 		associado = (Associado) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("associado");
 
@@ -78,6 +86,10 @@ public class AssociadoMB implements Serializable {
 		if (currentAssociadoVideogame == null) {
 			enableVideogameAdd = true;
 		}
+	}
+	
+	public void associadoSelecionado(ValueChangeEvent evento) {
+	
 	}
 	
 	public String adicionarVideogame() {
@@ -152,12 +164,36 @@ public class AssociadoMB implements Serializable {
 	}
 
 	public String salvar() {
-
+		
 		service.salvarAssociado(associado);
 
 		FacesMessage fm = new FacesMessage("Associado salvo com sucesso!");
 		FacesContext.getCurrentInstance().addMessage("Sucesso", fm);
 
+		return null;
+	}
+	
+	public String emprestarJogo(String nomeJogo) {
+		
+		enableEmprestar = true;
+		associados = service.listarAssociados();
+		associadosJogos = service.listarAssociadoVideogameJogo();
+		jogoParaEmprestar = nomeJogo;
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		return null;
+	}
+	
+	public String fecharFormularioDeEmprestimo() {
+		this.enableEmprestar = false;
 		return null;
 	}
 
@@ -177,6 +213,14 @@ public class AssociadoMB implements Serializable {
 
 	public void setVideogames(List<Videogame> videogames) {
 		this.videogames = videogames;
+	}
+	
+	public List<Associado> getAssociados() {
+		return associados;
+	}
+
+	public void setAssociados(List<Associado> associados) {
+		this.associados = associados;
 	}
 
 	public Videogame getSelectedVideogame() {
@@ -221,10 +265,41 @@ public class AssociadoMB implements Serializable {
 	public String getNovoJogo() {
 		return novoJogo;
 	}
+	
 
 
 	public void setNovoJogo(String novoJogo) {
 		this.novoJogo = novoJogo;
+	}
+
+
+	public boolean isEnableEmprestar() {
+		return enableEmprestar;
+	}
+
+
+	public void setEnableEmprestar(boolean enableEmprestar) {
+		this.enableEmprestar = enableEmprestar;
+	}
+
+
+	public List<AssociadoVideogameJogo> getAssociadosJogos() {
+		return associadosJogos;
+	}
+
+
+	public void setAssociadosJogos(List<AssociadoVideogameJogo> associadosJogos) {
+		this.associadosJogos = associadosJogos;
+	}
+
+
+	public String getJogoParaEmprestar() {
+		return jogoParaEmprestar;
+	}
+
+
+	public void setJogoParaEmprestar(String jogoParaEmprestar) {
+		this.jogoParaEmprestar = jogoParaEmprestar;
 	}
 
 

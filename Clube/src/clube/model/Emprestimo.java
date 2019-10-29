@@ -38,4 +38,8 @@ public class Emprestimo {
 	@OneToMany(mappedBy = "emprestimo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<EmprestimoItem> jogos;
 	
+
+	
+	
+	
 }

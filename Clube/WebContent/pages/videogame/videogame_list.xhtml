@@ -9,10 +9,15 @@
 <f:view contentType="text/html"></f:view>
 
 <h:head>
-	<title> Videogames </title>
+	<title>Videogames</title>
 </h:head>
 
-
+<style>
+body {
+background-image: url("https://rfclipart.com/image2/big/7f-db-09/joystick-seamless-pattern-on-green-background-Download-Royalty-free-Vector-File-EPS-425236.jpg");
+background-repeat: repeat;
+}
+</style>
 <h:body>
 	<h:form id="videogameForm">
 		<p:growl id="messages" />
@@ -30,16 +35,21 @@
 					<h:outputText value="#{c.nome}" />
 				</p:column>
 				<p:column headerText="ações" width="25%">
-					<p:commandButton value="editar" action="#{videogameListMB.editar(c)}" icon="fa fa-edit" />
-					<p:commandButton value="excluir" action="#{videogameListMB.excluir(c)}" icon="fa fa-remove" update=":videogameForm:grid :videogameForm:messages" />
+					<p:commandButton value="editar"
+						action="#{videogameListMB.editar(c)}" icon="fa fa-edit" />
+					<p:commandButton value="excluir"
+						action="#{videogameListMB.excluir(c)}" icon="fa fa-remove"
+						update=":videogameForm:grid :videogameForm:messages" />
 				</p:column>
 			</p:dataTable>
 		</h:panelGrid>
 
-		<p:commandButton value="Novo" icon="fa fa-plus" 
+		<p:commandButton value="Novo" icon="fa fa-plus"
 			action="#{videogameListMB.novo}" style="margin-right:20px;"
 			ajax="false" />
-
+		<p:commandButton value="Voltar" 
+			action="/pages/home.xhtml" style="margin-right:20px;"
+			ajax="false" />
 	</h:form>
 
 </h:body>
